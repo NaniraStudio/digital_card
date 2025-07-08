@@ -1,0 +1,217 @@
+body {
+    background-image: url('../img/fondo.jpg');
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    font-family: "Bitcount Grid Double", system-ui;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#header {
+    position: relative;
+    top: -1000px;
+    width: 100px;
+    height: 100px;
+    background-color: #ffb6c1;
+    border-radius: 20px;
+    z-index: 10;
+    animation: dropBounce 1.8s forwards;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all 1s ease;
+    box-shadow: 0 0 15px 5px rgba(255, 235, 238, 0.472);
+    gap: 8px;
+}
+
+@keyframes dropBounce {
+    0% { top: -1000px; }
+    70% { top: 0px; }
+    85% { top: -20px; }
+    100% { top: 0px; }
+}
+
+#header.expanded {
+    width: 600px;
+    justify-content: flex-start;
+    padding-left: 20px;
+    flex-direction: row;
+    gap: 30px;
+}
+
+#logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+#title {
+    display: none;
+    opacity: 0;
+    font-size: 30px;
+    font-weight: 400;
+    color: #E96C96;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    left: -40px;
+}
+
+#header.expanded #title {
+    display: block;
+    animation: slideRight 1s ease forwards;
+}
+
+@keyframes slideRight {
+    0% { opacity: 0; left: -40px; z-index: 0; }
+    100% { opacity: 1; left: 0; z-index: 1; }
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+#socials-wrapper {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 600px;
+    display: none;
+    padding: 0 10px;
+}
+
+#socials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 15px;
+    justify-items: center;
+}
+
+.grid-item {
+    background-color: #ffc9d1;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: dropSocial 0.6s ease forwards;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    height: 70px;
+    position: relative;
+}
+
+.grid-item:hover {
+    transform: scale(1.05) ease-in-out;
+    background-color: #eca8b3;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
+}
+
+.grid-item.large {
+    grid-column: span 3;
+    height: 250px;
+    background-color: #111;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.grid-item.wide {
+    grid-column: span 2;
+}
+
+.grid-item i {
+    font-size: 2.5rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover i {
+    transform: scale(1.2);
+}
+
+@keyframes dropSocial {
+    from { transform: translateY(-80px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+#slot4 { grid-column-start: 2; }
+#slot5 { grid-column-start: 3; }
+
+/* Spotify player */
+.grid-item.spotify-active {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+    height: 160px;
+}
+
+.spotify-icon-move {
+    animation: moveLeftIcon 0.4s forwards;
+}
+
+@keyframes moveLeftIcon {
+    to {
+    transform: translateX(-2px);
+    }
+}
+
+.spotify-player {
+    animation: fadeInSpotify 0.6s ease forwards;
+    width: 100%;
+    height: 152px;
+    border-radius: 12px;
+    border: none;
+}
+
+@keyframes fadeInSpotify {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #header.expanded {
+    width: 90%;
+    flex-direction: column;
+    padding-left: 0;
+    gap: 15px;
+    align-items: center;
+    }
+
+    #title {
+    font-size: 20px;
+    white-space: normal;
+    text-align: center;
+    left: 0;
+    }
+
+    #socials-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .grid-item.large,
+    .grid-item.wide {
+    grid-column: span 1 !important;
+    height: auto;
+    }
+
+    #slot4,
+    #slot5 {
+    grid-column-start: auto !important;
+    }
+
+    .spotify-player {
+    height: 200px;
+    }
+}
