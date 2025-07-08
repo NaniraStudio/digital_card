@@ -1,354 +1,217 @@
-:root {
-  --primary: #6d3914;
-  --secondary: #ab7843;
-  --font-color: #4c2b08;
-  --card-width: 350px;
-  --card-height: 510px;
-  --footer-font-size: 14px;
-  --footer-padding: 15px 20px;
-  --footer-align: flex-start;
-}
-
 body {
-  font-family: "Roboto Condensed", sans-serif;
-  background: url('../img/fondo.gif') no-repeat center/cover fixed;
-  backdrop-filter: blur(5px);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  margin: 0;
-  transition: background-size 0.5s ease;
+    background-image: url('../img/fondo.jpg');
+    backdrop-filter: blur(5px);
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    font-family: "Bitcount Grid Double", system-ui;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-.welcome-screen {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 250, 240, 0.148);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#header {
+    position: relative;
+    top: -1000px;
+    width: 100px;
+    height: 100px;
+    background-color: #ffb6c1;
+    border-radius: 20px;
+    z-index: 10;
+    animation: dropBounce 1.8s forwards;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all 1s ease;
+    box-shadow: 0 0 15px 5px rgba(255, 235, 238, 0.472);
+    gap: 8px;
 }
 
-.welcome-screen button {
-  background-color: var(--primary, #f4a8b6);
-  background-image: url('../img/logo_largo_blanco.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 200px;
-  color: white;
-  padding: 20px 40px;
-  width: 240px;
-  height: 100px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  color: var(--secondary);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-  transform: scale(1);
+@keyframes dropBounce {
+    0% { top: -1000px; }
+    70% { top: 0px; }
+    85% { top: -20px; }
+    100% { top: 0px; }
 }
 
-.welcome-screen button:hover {
-  color: var(--primary);
-  background-color: var(--secondary, #f28eaa);
-  background-image: url('../img/logo_largo.svg');
-  transform: scale(1.05);
+#header.expanded {
+    width: 600px;
+    justify-content: flex-start;
+    padding-left: 20px;
+    flex-direction: row;
+    gap: 30px;
 }
 
-.welcome-screen button.clicked {
-  animation: buttonScale 0.8s forwards;
+#logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
 }
 
-.loading-screen {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 250, 240, 0.148);
-  backdrop-filter: blur(5px);
-  z-index: 9998;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#title {
+    display: none;
+    opacity: 0;
+    font-size: 30px;
+    font-weight: 400;
+    color: #E96C96;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    left: -40px;
 }
 
-.loading-gif {
-  width: 500px;
-  height: auto;
-  transform: scale(0);
-  opacity: 0;
-  transition: all 0.5s ease;
+#header.expanded #title {
+    display: block;
+    animation: slideRight 1s ease forwards;
 }
 
-.loading-gif.active {
-  animation: loadingAppear 0.8s forwards;
+@keyframes slideRight {
+    0% { opacity: 0; left: -40px; z-index: 0; }
+    100% { opacity: 1; left: 0; z-index: 1; }
 }
 
-.loading-gif.finish {
-  animation: loadingDisappear 0.8s forwards;
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
-/* Animaciones */
-@keyframes buttonScale {
-  0% { transform: scale(1); }
-  30% { transform: scale(1.2); }
-  70% { transform: scale(1.2); }
-  100% { transform: scale(0); opacity: 0; }
+#socials-wrapper {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 600px;
+    display: none;
+    padding: 0 10px;
 }
 
-@keyframes loadingAppear {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+#socials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 15px;
+    justify-items: center;
 }
 
-@keyframes loadingDisappear {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.5; }
-  100% { transform: scale(0); opacity: 0; }
+.grid-item {
+    background-color: #ffc9d1;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: dropSocial 0.6s ease forwards;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    height: 70px;
+    position: relative;
 }
 
-/* Resto de tu CSS existente... */
-.logo {
-  width: 80%;
-  height: auto;
-  margin-bottom: 2%;
+.grid-item:hover {
+    transform: scale(1.05) ease-in-out;
+    background-color: #eca8b3;
+    box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
 }
 
-.title {
-  color: var(--primary);
-  font-weight: 500;
+.grid-item.large {
+    grid-column: span 3;
+    height: 250px;
+    background-color: #111;
+    pointer-events: none;
+    overflow: hidden;
 }
 
-.main-container,
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  transition: all 0.5s ease;
+.grid-item.wide {
+    grid-column: span 2;
 }
 
-.card-container {
-  perspective: 1000px;
-  width: var(--card-width);
-  height: var(--card-height);
-  margin-bottom: 40px;
+.grid-item i {
+    font-size: 2.5rem;
+    color: white;
+    transition: transform 0.3s ease;
 }
 
-.card,
-.card-face {
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  background: var(--secondary);
-  position: relative;
-  transition: transform 1s;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+.grid-item:hover i {
+    transform: scale(1.2);
 }
 
-.card {
-  transform-style: preserve-3d;
-  border-style: solid;
+@keyframes dropSocial {
+    from { transform: translateY(-80px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
-.card.flipped {
-  transform: rotateY(180deg);
+#slot4 { grid-column-start: 2; }
+#slot5 { grid-column-start: 3; }
+
+/* Spotify player */
+.grid-item.spotify-active {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+    height: 160px;
 }
 
-.card-face {
-  position: absolute;
-  backface-visibility: hidden;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-clip: padding-box;
-  border: 1px solid transparent;
+.spotify-icon-move {
+    animation: moveLeftIcon 0.4s forwards;
 }
 
-.card-front,
-.card-back {
-  background: var(--secondary);
-  justify-content: flex-start;
+@keyframes moveLeftIcon {
+    to {
+    transform: translateX(-2px);
+    }
 }
 
-.card-front {
-  cursor: pointer;
+.spotify-player {
+    animation: fadeInSpotify 0.6s ease forwards;
+    width: 100%;
+    height: 152px;
+    border-radius: 12px;
+    border: none;
 }
 
-.card-back {
-  transform: rotateY(180deg);
-  padding-top: 10px;
+@keyframes fadeInSpotify {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.character-container {
-  width: 100%;
-  height: auto;
-  max-height: 320px;
-  overflow: hidden;
-  border-radius: 15px;
-}
+/* Responsive */
+@media (max-width: 768px) {
+    #header.expanded {
+    width: 90%;
+    flex-direction: column;
+    padding-left: 0;
+    gap: 15px;
+    align-items: center;
+    }
 
-.character-container video {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  border-radius: 15px;
-}
-
-.back-title {
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 10px;
-  color: #5c4029;
-}
-
-.back-title {
-  margin-bottom: 10%;
-}
-
-.subtitle-container {
-  padding-top: 5%;
-}
-
-.subtitle {
-  font-size: 16px;
-  opacity: 0.9;
-  text-align: center;
-  color: var(--primary);
-}
-
-.social-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 50px;
-  border-style: solid;
-  border-width: 3px;
-  text-decoration: none;
-  color: var(--primary);
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  z-index: 1;
-}
-
-.social-btn i,
-.social-btn p {
-  margin-right: 10px;
-  font-size: 20px;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  color: var(--primary);
-  margin: 0;
-}
-
-.social-btn p {
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 1%;
-}
-
-.social-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--primary);
-  transition: all 0.3s ease;
-  z-index: 0;
-}
-
-.social-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.social-btn:hover i,
-.social-btn:hover p {
-  color: var(--secondary);
-}
-
-.social-btn:hover::before {
-  left: 0;
-}
-
-.footer {
-  width: 100%;
-  padding: var(--footer-padding);
-  text-align: left;
-  background: rgba(109, 57, 20, 0.406);
-  backdrop-filter: blur(5px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: var(--footer-font-size);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: var(--footer-align);
-  align-items: center;
-}
-
-.footer p {
-  margin: 0;
-  width: 100%;
-  font-size: 14;
-  font-weight: 500;
-  color: var(--secondary);
-}
-
-.no-flip {
-  pointer-events: auto;
-}
-
-@media (max-width: 576px) {
-  :root {
-    --card-width: 90%;
-    --card-height: 500px;
-    --footer-font-size: 12px;
-    --footer-padding: 10px 15px;
-    --footer-align: center;
-  }
-
-  .character-container {
-    max-height: auto;
-  }
-
-  .title {
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .subtitle {
+    #title {
     font-size: 20px;
-  }
+    white-space: normal;
+    text-align: center;
+    left: 0;
+    }
 
-  .footer p {
-    max-width: 90%;
-  }
+    #socials-grid {
+    grid-template-columns: 1fr;
+    }
 
-  
+    .grid-item.large,
+    .grid-item.wide {
+    grid-column: span 1 !important;
+    height: auto;
+    }
+
+    #slot4,
+    #slot5 {
+    grid-column-start: auto !important;
+    }
+
+    .spotify-player {
+    height: 200px;
+    }
 }
