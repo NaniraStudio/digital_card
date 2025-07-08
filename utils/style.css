@@ -1,0 +1,354 @@
+:root {
+  --primary: #6d3914;
+  --secondary: #ab7843;
+  --font-color: #4c2b08;
+  --card-width: 350px;
+  --card-height: 510px;
+  --footer-font-size: 14px;
+  --footer-padding: 15px 20px;
+  --footer-align: flex-start;
+}
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  background: url('../img/fondo.gif') no-repeat center/cover fixed;
+  backdrop-filter: blur(5px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+  transition: background-size 0.5s ease;
+}
+
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 250, 240, 0.148);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-screen button {
+  background-color: var(--primary, #f4a8b6);
+  background-image: url('../img/logo_largo_blanco.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 200px;
+  color: white;
+  padding: 20px 40px;
+  width: 240px;
+  height: 100px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  color: var(--secondary);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.welcome-screen button:hover {
+  color: var(--primary);
+  background-color: var(--secondary, #f28eaa);
+  background-image: url('../img/logo_largo.svg');
+  transform: scale(1.05);
+}
+
+.welcome-screen button.clicked {
+  animation: buttonScale 0.8s forwards;
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 250, 240, 0.148);
+  backdrop-filter: blur(5px);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-gif {
+  width: 500px;
+  height: auto;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.loading-gif.active {
+  animation: loadingAppear 0.8s forwards;
+}
+
+.loading-gif.finish {
+  animation: loadingDisappear 0.8s forwards;
+}
+
+/* Animaciones */
+@keyframes buttonScale {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes loadingAppear {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes loadingDisappear {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Resto de tu CSS existente... */
+.logo {
+  width: 80%;
+  height: auto;
+  margin-bottom: 2%;
+}
+
+.title {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.main-container,
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+.card-container {
+  perspective: 1000px;
+  width: var(--card-width);
+  height: var(--card-height);
+  margin-bottom: 40px;
+}
+
+.card,
+.card-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: var(--secondary);
+  position: relative;
+  transition: transform 1s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  transform-style: preserve-3d;
+  border-style: solid;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+
+.card-front,
+.card-back {
+  background: var(--secondary);
+  justify-content: flex-start;
+}
+
+.card-front {
+  cursor: pointer;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  padding-top: 10px;
+}
+
+.character-container {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.character-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.back-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #5c4029;
+}
+
+.back-title {
+  margin-bottom: 10%;
+}
+
+.subtitle-container {
+  padding-top: 5%;
+}
+
+.subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  text-align: center;
+  color: var(--primary);
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50px;
+  border-style: solid;
+  border-width: 3px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.social-btn i,
+.social-btn p {
+  margin-right: 10px;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  color: var(--primary);
+  margin: 0;
+}
+
+.social-btn p {
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 1%;
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn:hover i,
+.social-btn:hover p {
+  color: var(--secondary);
+}
+
+.social-btn:hover::before {
+  left: 0;
+}
+
+.footer {
+  width: 100%;
+  padding: var(--footer-padding);
+  text-align: left;
+  background: rgba(109, 57, 20, 0.406);
+  backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--footer-font-size);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: var(--footer-align);
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+  width: 100%;
+  font-size: 14;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.no-flip {
+  pointer-events: auto;
+}
+
+@media (max-width: 576px) {
+  :root {
+    --card-width: 90%;
+    --card-height: 500px;
+    --footer-font-size: 12px;
+    --footer-padding: 10px 15px;
+    --footer-align: center;
+  }
+
+  .character-container {
+    max-height: auto;
+  }
+
+  .title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .footer p {
+    max-width: 90%;
+  }
+
+  
+}
