@@ -144,7 +144,6 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Botón expandible */
 .expand-btn {
     background-color: #ffc9d1;
     color: white;
@@ -160,7 +159,6 @@ body {
     background-color: #eca8b3;
 }
 
-/* Contenedor del video expandido */
 #expand-content {
     grid-column: span 3;
     display: none;
