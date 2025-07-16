@@ -19,7 +19,6 @@ function showSocials() {
         slot.onclick = () => window.open(link.url, '_blank');
     });
 
-    // Botón para CV
     document.getElementById('cv-slot').onclick = () => {
         window.open('/docs/cv.pdf', '_blank');
     };
@@ -32,7 +31,6 @@ header.addEventListener('click', () => {
     }
 });
 
-// Botón para expandir/ocultar video
 moreInfoBtn.addEventListener('click', () => {
     if (expandContent.style.display === 'none' || expandContent.style.display === '') {
         expandContent.style.display = 'block';
