@@ -112,7 +112,7 @@ body {
 }
 
 .grid-item:hover {
-    transform: scale(1.05) ease-in-out;
+    transform: scale(1.05);
     background-color: #eca8b3;
     box-shadow: 0 0 15px rgba(255, 182, 193, 0.5);
 }
@@ -120,7 +120,7 @@ body {
 .grid-item.large {
     grid-column: span 3;
     height: 250px;
-    background-color: #111;
+    background-color: transparent;
     pointer-events: none;
     overflow: hidden;
 }
@@ -144,74 +144,67 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-#slot4 { grid-column-start: 2; }
-#slot5 { grid-column-start: 3; }
-
-/* Spotify player */
-.grid-item.spotify-active {
-    flex-direction: row;
-    justify-content: flex-start;
+/* Botón expandible */
+.expand-btn {
+    background-color: #ffc9d1;
+    color: white;
+    font-weight: bold;
+    grid-column: span 3;
+    text-align: center;
+    font-size: larger;
     padding: 10px;
-    gap: 10px;
-    height: 160px;
-}
-
-.spotify-icon-move {
-    animation: moveLeftIcon 0.4s forwards;
-}
-
-@keyframes moveLeftIcon {
-    to {
-    transform: translateX(-2px);
-    }
-}
-
-.spotify-player {
-    animation: fadeInSpotify 0.6s ease forwards;
-    width: 100%;
-    height: 152px;
     border-radius: 12px;
-    border: none;
 }
 
-@keyframes fadeInSpotify {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+.expand-btn:hover {
+    background-color: #eca8b3;
+}
+
+/* Contenedor del video expandido */
+#expand-content {
+    grid-column: span 3;
+    display: none;
+    background-color: #111;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+#expand-content iframe {
+    width: 100%;
+    height: 520px;
+    border: none;
+    border-radius: 10px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     #header.expanded {
-    width: 90%;
-    flex-direction: column;
-    padding-left: 0;
-    gap: 15px;
-    align-items: center;
+        width: 90%;
+        flex-direction: column;
+        padding-left: 0;
+        gap: 15px;
+        align-items: center;
     }
 
     #title {
-    font-size: 20px;
-    white-space: normal;
-    text-align: center;
-    left: 0;
+        font-size: 20px;
+        white-space: normal;
+        text-align: center;
+        left: 0;
     }
 
     #socials-grid {
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 
     .grid-item.large,
-    .grid-item.wide {
-    grid-column: span 1 !important;
-    height: auto;
+    .grid-item.wide,
+    .expand-btn,
+    #expand-content {
+        grid-column: span 1 !important;
     }
 
-    #slot4,
-    #slot5 {
-    grid-column-start: auto !important;
-    }
-
-    .spotify-player {
-    height: 200px;
+    #expand-content iframe {
+        height: 520px;
     }
 }
