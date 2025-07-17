@@ -6,7 +6,7 @@ const expandContent = document.getElementById('expand-content');
 const links = [
     { id: 'slot2', name: 'instagram', url: 'https://www.instagram.com/nanira_n?igsh=MXhmNGl1bXg2ZGJtYw==', icon: 'bi-instagram' },
     { id: 'slot3', name: 'tiktok', url: 'https://www.tiktok.com/@nanira_studio?_t=ZS-8y5nH0gVKoj&_r=1', icon: 'bi-tiktok' },
-    { id: 'slot4', name: 'whatsapp', url: 'https://wa.me/qr/UJBD4BFV4SWVJ1', icon: 'bi-whatsapp' },
+    { id: 'slot4', name: 'whatsapp', url: 'https://wa.me/51932944043', icon: 'bi-whatsapp' },
     { id: 'slot5', name: 'spotify', url: 'https://open.spotify.com/user/31pac3vokazdgv7gjztyreowwgcu', icon: 'bi-spotify' }
 ];
 
