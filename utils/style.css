@@ -3,10 +3,11 @@
     --secondary: white;
     --no-hover: #ffc9d1;
     --hover: #eca8b3;
+    --background: #e9b9c0;
 }
 
 body {
-    background-image: url('../img/fondo.webp');
+    background-color: var(--background);
     backdrop-filter: blur(5px);
     background-size: cover;
     background-position: center;
@@ -18,6 +19,37 @@ body {
     min-height: 100vh;
     flex-direction: column;
     padding: 1% 0;
+    position: relative;
+}
+
+/* Fondo de lluvia de comida */
+#food-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.food-item {
+    position: absolute;
+    width: 50px;
+    animation: fall linear infinite, spin linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes fall {
+    0% { top: -140px; opacity: 0; }
+    10% { opacity: 1; }
+    100% { top: 110%; opacity: 1; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 #header {
