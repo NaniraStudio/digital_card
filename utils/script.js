@@ -21,7 +21,7 @@ function showSocials() {
 
     // Botón para CV
     document.getElementById('cv-slot').onclick = () => {
-        window.open('/docs/cv.pdf', '_blank');
+        window.open('https://drive.google.com/file/d/1-5bOu-ujs9c7nktNT2buIIwwNQmZBdja/view?usp=sharing', '_blank');
     };
 }
 
@@ -91,5 +91,5 @@ function createFood() {
     });
 }
 
-// Genera comida cada 800ms para no saturar
+// Genera comida cada 600ms para no saturar
 setInterval(createFood, 800);
