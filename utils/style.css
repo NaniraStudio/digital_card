@@ -161,7 +161,7 @@ body {
     grid-column: span 3;
     height: 250px;
     background-color: transparent;
-    pointer-events: none;
+    /*pointer-events: none;*/
     overflow: hidden;
 }
 
