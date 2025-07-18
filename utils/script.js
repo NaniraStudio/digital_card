@@ -21,7 +21,7 @@ function showSocials() {
 
     // Botón para CV
     document.getElementById('cv-slot').onclick = () => {
-        window.open('https://drive.google.com/file/d/1-5bOu-ujs9c7nktNT2buIIwwNQmZBdja/view?usp=sharing', '_blank');
+        window.open('img/CV.pdf', '_blank');
     };
 }
 
