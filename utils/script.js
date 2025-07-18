@@ -4,8 +4,8 @@ const moreInfoBtn = document.getElementById('more-info-btn');
 const expandContent = document.getElementById('expand-content');
 
 const links = [
-    { id: 'slot2', name: 'instagram', url: 'https://www.instagram.com/ninara_.studios?igsh=MXhmNGl1bXg2ZGJtYw%3D%3D', icon: 'bi-instagram' },
-    { id: 'slot3', name: 'tiktok', url: 'https://www.tiktok.com/@ninara_studios?_t=zm-8wndkyvn09m&_r=1', icon: 'bi-tiktok' },
+    { id: 'slot2', name: 'instagram', url: 'https://www.instagram.com/nanira_n?igsh=MXhmNGl1bXg2ZGJtYw==', icon: 'bi-instagram' },
+    { id: 'slot3', name: 'tiktok', url: 'https://www.tiktok.com/@nanira_studio?_t=ZS-8y5nH0gVKoj&_r=1', icon: 'bi-tiktok' },
     { id: 'slot4', name: 'whatsapp', url: 'https://wa.me/51932944043', icon: 'bi-whatsapp' },
     { id: 'slot5', name: 'spotify', url: 'https://open.spotify.com/user/31pac3vokazdgv7gjztyreowwgcu', icon: 'bi-spotify' }
 ];
